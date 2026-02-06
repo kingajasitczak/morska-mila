@@ -1,16 +1,27 @@
+import Image from 'next/image';
+import { FaEnvelope, FaFacebook } from 'react-icons/fa'; // Importujemy profesjonalne ikony
+
 export default function Footer() {
     return (
-        <footer className="bg-gray-900 text-gray-400 py-10 mt-auto border-t border-gray-800">
+        // Tło jasnoszare (bg-gray-100), tekst ciemnoszary (text-gray-600)
+        <footer className="bg-gray-100 text-gray-600 py-12 mt-auto border-t border-gray-200">
             <div className="max-w-6xl mx-auto px-6">
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left">
 
-                    {/* KOLUMNA 1: MARKA I OPIS */}
-                    <div>
-                        <h3 className="text-xl font-bold text-white uppercase tracking-wider mb-4">
-                            Morska Mila
-                        </h3>
-                        <p className="text-sm leading-relaxed mb-4">
+                    {/* KOLUMNA 1: LOGO I OPIS */}
+                    <div className="flex flex-col items-center md:items-start">
+                        {/* LOGO */}
+                        <div className="mb-6 relative h-16 w-48">
+                            <Image
+                                src="/images/logo-trasparent-30.png"
+                                alt="Morska Mila Logo Stopka"
+                                fill
+                                className="object-contain object-center md:object-left"
+                            />
+                        </div>
+
+                        <p className="text-sm leading-relaxed mb-4 max-w-xs text-gray-500">
                             Komfortowe domki letniskowe w Kopaniu.
                             Idealne miejsce na rodzinny wypoczynek między morzem a jeziorem.
                         </p>
@@ -18,52 +29,55 @@ export default function Footer() {
 
                     {/* KOLUMNA 2: ADRES I E-MAIL */}
                     <div className="flex flex-col items-center md:items-start">
-                        <h4 className="text-white font-bold mb-4 uppercase text-sm tracking-wider">
+                        <h4 className="text-blue-900 font-bold mb-4 uppercase text-sm tracking-wider border-b border-gray-300 pb-2">
                             Adres
                         </h4>
                         <div className="space-y-2 text-sm">
-                            <p>Kopań (numer posesji)</p>
+                            <p>Kopań 61H</p>
                             <p>76-150 Darłowo</p>
-                            <a href="mailto:kontakt@morska-mila.pl" className="block mt-2 text-blue-400 hover:text-blue-300 transition">
-                                ✉️ kontakt@morska-mila.pl
+
+                            <a href="mailto:poczta@morska-mila.pl" className="flex items-center justify-center md:justify-start gap-2 mt-4 text-blue-900 hover:text-blue-600 transition font-medium group">
+                                <FaEnvelope className="group-hover:scale-110 transition" />
+                                poczta@morska-mila.pl
                             </a>
                         </div>
                     </div>
 
                     {/* KOLUMNA 3: KONTAKT I SOCIAL MEDIA */}
                     <div className="flex flex-col items-center md:items-start">
-                        <h4 className="text-white font-bold mb-4 uppercase text-sm tracking-wider">
+                        <h4 className="text-blue-900 font-bold mb-4 uppercase text-sm tracking-wider border-b border-gray-300 pb-2">
                             Rezerwacje
                         </h4>
 
-                        {/* Numer telefonu - teraz jako zwykły tekst, nie przycisk */}
+                        {/* Telefon granatowy i duży */}
                         <a
-                            href="tel:+48607000000"
-                            className="text-2xl text-white font-bold hover:text-blue-400 transition mb-4"
+                            href="tel:+48798093006"
+                            className="text-2xl text-blue-900 font-bold hover:text-blue-600 transition mb-6 block"
                         >
-                            +48 607 ... ...
+                            +48 798 093 006
+                        </a>
+                        <a
+                            href="tel:+48504186535"
+                            className="text-2xl text-blue-900 font-bold hover:text-blue-600 transition mb-6 block"
+                        >
+                            +48 504 186 535
                         </a>
 
-                        {/* Ikonka Facebooka (Standard w stopce) */}
                         <a
-                            href="https://facebook.com"
+                            href="https://www.facebook.com/domkimorskamila"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-2 text-gray-400 hover:text-white transition group"
+                            className="flex items-center gap-3 text-gray-600 hover:text-blue-700 transition group border border-gray-300 rounded-full px-4 py-2 hover:border-blue-600 hover:bg-white bg-white shadow-sm"
                         >
-                            <div className="w-8 h-8 rounded-full bg-gray-800 group-hover:bg-blue-600 flex items-center justify-center transition">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                                </svg>
-                            </div>
-                            <span className="text-sm">Odwiedź nas na Facebooku</span>
+                            <FaFacebook size={20} className="text-blue-600" />
+                            <span className="text-sm font-medium">Znajdź nas na Facebooku</span>
                         </a>
                     </div>
 
                 </div>
 
-                {/* DOLNY PASEK - TYLKO COPYRIGHT */}
-                <div className="mt-10 pt-6 border-t border-gray-800 text-center text-xs text-gray-500">
+                {/* DOLNY PASEK */}
+                <div className="mt-12 pt-6 border-t border-gray-300 text-center text-xs text-gray-500 flex flex-col md:flex-row justify-between items-center gap-2">
                     <p>© {new Date().getFullYear()} Morska Mila. Wszelkie prawa zastrzeżone.</p>
                 </div>
             </div>

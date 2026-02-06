@@ -2,185 +2,183 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import { FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-// --- DANE (ZDJĘCIA) ---
-// Pamiętaj, żeby z czasem podmienić 'src' na różne pliki, jak już je wgrasz.
-const wszystkieZdjecia = [
-    // Kategoria: WNĘTRZA
-    { src: "/images/DSC_0660_123.jpg", category: "Wnętrza", alt: "Salon z aneksem - widok ogólny" },
-    { src: "/images/DSC_0660_123.jpg", category: "Wnętrza", alt: "Sypialnia na piętrze" },
-    { src: "/images/DSC_0660_123.jpg", category: "Wnętrza", alt: "Łazienka z prysznicem" },
-
-    // Kategoria: ZEWNĄTRZ
-    { src: "/images/DSC_0660_123.jpg", category: "Zewnątrz", alt: "Widok na taras i wejście" },
-    { src: "/images/DSC_0660_123.jpg", category: "Zewnątrz", alt: "Plac zabaw dla dzieci" },
-    { src: "/images/DSC_0660_123.jpg", category: "Zewnątrz", alt: "Miejsce na grilla" },
-
-    // Kategoria: OKOLICA
-    { src: "/images/DSC_0660_123.jpg", category: "Okolica", alt: "Droga na plażę (200m)" },
-    { src: "/images/DSC_0660_123.jpg", category: "Okolica", alt: "Jezioro Kopań o zachodzie" },
-    { src: "/images/DSC_0660_123.jpg", category: "Okolica", alt: "Szeroka plaża" },
+// KATEGORIE
+const categories = [
+    { id: "all", name: "Wszystko" },
+    { id: "wnetrze", name: "Wnętrze" },
+    { id: "zewnatrz", name: "Zewnątrz" },
+    { id: "okolica", name: "Okolica" },
 ];
 
-const kategorie = ["Wszystkie", "Wnętrza", "Zewnątrz", "Okolica"];
+// ZDJĘCIA
+const photos = [
+    // WNĘTRZE
+    { src: "/images/domki/1.jpg", category: "wnetrze", alt: "Salon z aneksem" },
+    { src: "/images/domki/2.jpg", category: "wnetrze", alt: "Salon z aneksem" },
+    { src: "/images/domki/3.jpg", category: "wnetrze", alt: "Salon z aneksem" },
+    { src: "/images/domki/4.jpg", category: "wnetrze", alt: "Salon z aneksem" },
+    { src: "/images/domki/5.jpg", category: "wnetrze", alt: "Salon z aneksem" },
+    { src: "/images/domki/6.jpg", category: "wnetrze", alt: "Salon z aneksem" },
+    { src: "/images/domki/7_.jpg", category: "wnetrze", alt: "Salon z aneksem" },
+    { src: "/images/domki/8.jpg", category: "wnetrze", alt: "Salon z aneksem" },
+    { src: "/images/domki/9.jpg", category: "wnetrze", alt: "Salon z aneksem" },
+
+
+    // ZEWNĄTRZ
+    { src: "/images/DSC_0660_123.jpg", category: "zewnatrz", alt: "Domki z zewnątrz" },
+    { src: "/images/DSC_0663.jpg", category: "zewnatrz", alt: "Taras" },
+    { src: "/images/Panorama1.jpg", category: "zewnatrz", alt: "Panorama ośrodka" },
+
+    // OKOLICA
+    { src: "/images/Kopan.jpg", category: "okolica", alt: "Okolica i jezioro" },
+];
 
 export default function GaleriaPage() {
-    const [aktywnaKategoria, setAktywnaKategoria] = useState("Wszystkie");
+    const [filter, setFilter] = useState("all");
+    const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number | null>(null);
 
-    // Stan dla Lightboxa (które zdjęcie jest otwarte? null = żadne)
-    const [wybranyIndeks, setWybranyIndeks] = useState<number | null>(null);
+    // 1. Filtrujemy zdjęcia
+    const filteredPhotos = filter === "all"
+        ? photos
+        : photos.filter((photo) => photo.category === filter);
 
-    // Filtrowanie zdjęć
-    const wyswietlaneZdjecia = aktywnaKategoria === "Wszystkie"
-        ? wszystkieZdjecia
-        : wszystkieZdjecia.filter(foto => foto.category === aktywnaKategoria);
-
-    // Funkcje nawigacji
-    const otworzLightbox = (index: number) => {
-        setWybranyIndeks(index);
+    // FUNKCJE NAWIGACJI
+    const openLightbox = (index: number) => {
+        setSelectedPhotoIndex(index);
     };
 
-    const zamknijLightbox = () => {
-        setWybranyIndeks(null);
+    const closeLightbox = () => {
+        setSelectedPhotoIndex(null);
     };
 
-    const nastepneZdjecie = useCallback((e?: React.MouseEvent) => {
-        e?.stopPropagation(); // Zapobiega zamknięciu przy kliknięciu strzałki
-        if (wybranyIndeks !== null) {
-            setWybranyIndeks((prev) =>
-                prev === wyswietlaneZdjecia.length - 1 ? 0 : (prev as number) + 1
-            );
-        }
-    }, [wybranyIndeks, wyswietlaneZdjecia.length]);
+    const showNext = useCallback(() => {
+        if (selectedPhotoIndex === null) return;
+        setSelectedPhotoIndex((prev) =>
+            prev !== null ? (prev + 1) % filteredPhotos.length : null
+        );
+    }, [selectedPhotoIndex, filteredPhotos.length]);
 
-    const poprzednieZdjecie = useCallback((e?: React.MouseEvent) => {
-        e?.stopPropagation();
-        if (wybranyIndeks !== null) {
-            setWybranyIndeks((prev) =>
-                prev === 0 ? wyswietlaneZdjecia.length - 1 : (prev as number) - 1
-            );
-        }
-    }, [wybranyIndeks, wyswietlaneZdjecia.length]);
+    const showPrev = useCallback(() => {
+        if (selectedPhotoIndex === null) return;
+        setSelectedPhotoIndex((prev) =>
+            prev !== null ? (prev - 1 + filteredPhotos.length) % filteredPhotos.length : null
+        );
+    }, [selectedPhotoIndex, filteredPhotos.length]);
 
-    // Obsługa klawiatury (Strzałki i ESC)
+    // OBSŁUGA KLAWIATURY
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            if (wybranyIndeks === null) return;
-            if (e.key === "Escape") zamknijLightbox();
-            if (e.key === "ArrowRight") nastepneZdjecie();
-            if (e.key === "ArrowLeft") poprzednieZdjecie();
+            if (selectedPhotoIndex === null) return;
+            if (e.key === "Escape") closeLightbox();
+            if (e.key === "ArrowRight") showNext();
+            if (e.key === "ArrowLeft") showPrev();
         };
+
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [wybranyIndeks, nastepneZdjecie, poprzednieZdjecie]);
-
+    }, [selectedPhotoIndex, showNext, showPrev]);
 
     return (
-        <div className="container mx-auto px-4 py-12 max-w-6xl min-h-screen">
-            <h1 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4 text-center">
+        <div className="container mx-auto px-4 py-12 max-w-6xl">
+
+            {/* NAGŁÓWEK */}
+            <h1 className="text-3xl md:text-4xl font-bold text-blue-900 mb-8 border-b-2 border-blue-100 pb-4">
                 Galeria Zdjęć
             </h1>
 
-            {/* PRZYCISKI KATEGORII */}
-            <div className="flex flex-wrap justify-center gap-4 mb-10">
-                {kategorie.map((kat) => (
+            {/* FILTRY */}
+            <div className="flex flex-wrap gap-3 mb-12">
+                {categories.map((cat) => (
                     <button
-                        key={kat}
-                        onClick={() => { setAktywnaKategoria(kat); setWybranyIndeks(null); }}
-                        className={`px-6 py-2 rounded-full font-medium transition duration-300 shadow-sm
-              ${aktywnaKategoria === kat
-                            ? "bg-blue-900 text-white shadow-md transform scale-105"
-                            : "bg-white text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+                        key={cat.id}
+                        onClick={() => { setFilter(cat.id); setSelectedPhotoIndex(null); }}
+                        className={`px-6 py-2 rounded-full text-sm md:text-base font-medium transition duration-300 border ${
+                            filter === cat.id
+                                ? "bg-blue-900 text-white border-blue-900 shadow-md"
+                                : "bg-white text-gray-600 border-gray-200 hover:border-blue-900 hover:text-blue-900"
                         }`}
                     >
-                        {kat}
+                        {cat.name}
                     </button>
                 ))}
             </div>
 
             {/* SIATKA ZDJĘĆ */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                {wyswietlaneZdjecia.map((foto, index) => (
+                {filteredPhotos.map((photo, index) => (
                     <div
                         key={index}
-                        onClick={() => otworzLightbox(index)} // Kliknięcie otwiera Lightbox
-                        className="group relative h-64 w-full rounded-xl overflow-hidden shadow-lg border border-gray-100 bg-gray-200 cursor-pointer"
+                        onClick={() => openLightbox(index)}
+                        className="group relative h-64 w-full rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition duration-500 cursor-pointer"
                     >
                         <Image
-                            src={foto.src}
-                            alt={foto.alt}
+                            src={photo.src}
+                            alt={photo.alt}
                             fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-110"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="object-cover group-hover:scale-110 transition duration-700"
                         />
-
-                        {/* Ikona lupy po najechaniu */}
-                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                            <span className="text-white text-4xl font-light">+</span>
+                        {/* Ikonka lupki */}
+                        <div className="absolute inset-0 bg-blue-900/0 group-hover:bg-blue-900/20 transition duration-500 flex items-center justify-center">
+               <span className="text-white opacity-0 group-hover:opacity-100 transition duration-500 text-4xl drop-shadow-lg">
+                 +
+               </span>
                         </div>
                     </div>
                 ))}
             </div>
 
-            {/* --- LIGHTBOX (MODAL) --- */}
-            {wybranyIndeks !== null && (
-                <div
-                    className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
-                    onClick={zamknijLightbox} // Kliknięcie w tło zamyka
-                >
-                    {/* Przycisk ZAMKNIJ (X) */}
+            {/* LIGHTBOX (Pełny ekran) */}
+            {selectedPhotoIndex !== null && (
+                <div className="fixed inset-0 bg-black/95 z-[60] flex items-center justify-center p-4 backdrop-blur-sm">
+
+                    {/* Przycisk Zamknij (X) */}
                     <button
-                        onClick={zamknijLightbox}
-                        className="absolute top-4 right-4 text-white hover:text-gray-300 z-50 p-2"
+                        onClick={closeLightbox}
+                        className="absolute top-6 right-6 text-white/70 hover:text-white p-2 rounded-full hover:bg-white/10 transition z-[70]"
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>
+                        {/* POPRAWKA: Używamy className zamiast size */}
+                        <FaTimes className="w-8 h-8 md:w-10 md:h-10" />
                     </button>
 
-                    {/* Przycisk POPRZEDNIE (<) */}
+                    {/* Strzałka w lewo */}
                     <button
-                        onClick={poprzednieZdjecie}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 p-2 z-50 bg-black/50 rounded-full hover:bg-black/80 transition"
+                        onClick={(e) => { e.stopPropagation(); showPrev(); }}
+                        className="absolute left-4 md:left-8 text-white/70 hover:text-white p-3 rounded-full hover:bg-white/10 transition z-[70]"
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <polyline points="15 18 9 12 15 6"></polyline>
-                        </svg>
+                        {/* POPRAWKA: Używamy className zamiast md:size */}
+                        <FaChevronLeft className="w-8 h-8 md:w-10 md:h-10" />
                     </button>
 
-                    {/* ZDJĘCIE POWIĘKSZONE */}
-                    <div
-                        className="relative w-full max-w-5xl h-[80vh]"
-                        onClick={(e) => e.stopPropagation()} // Kliknięcie w zdjęcie NIE zamyka
-                    >
+                    {/* Zdjęcie Główne */}
+                    <div className="relative w-full h-full max-w-5xl max-h-[85vh]">
                         <Image
-                            src={wyswietlaneZdjecia[wybranyIndeks].src}
-                            alt={wyswietlaneZdjecia[wybranyIndeks].alt}
+                            src={filteredPhotos[selectedPhotoIndex].src}
+                            alt={filteredPhotos[selectedPhotoIndex].alt}
                             fill
-                            className="object-contain" // Zachowuje proporcje
+                            className="object-contain"
                             priority
                         />
-                        {/* Opis pod zdjęciem */}
-                        <div className="absolute bottom-4 left-0 right-0 text-center pointer-events-none">
-                            <p className="text-white text-lg bg-black/50 inline-block px-4 py-1 rounded-full">
-                                {wyswietlaneZdjecia[wybranyIndeks].alt}
+                        {/* Podpis zdjęcia */}
+                        <div className="absolute bottom-4 left-0 right-0 text-center">
+                            <p className="text-white text-lg font-medium drop-shadow-md bg-black/50 inline-block px-4 py-1 rounded-full">
+                                {filteredPhotos[selectedPhotoIndex].alt}
                             </p>
                         </div>
                     </div>
 
-                    {/* Przycisk NASTĘPNE (>) */}
+                    {/* Strzałka w prawo */}
                     <button
-                        onClick={nastepneZdjecie}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 p-2 z-50 bg-black/50 rounded-full hover:bg-black/80 transition"
+                        onClick={(e) => { e.stopPropagation(); showNext(); }}
+                        className="absolute right-4 md:right-8 text-white/70 hover:text-white p-3 rounded-full hover:bg-white/10 transition z-[70]"
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <polyline points="9 18 15 12 9 6"></polyline>
-                        </svg>
+                        <FaChevronRight className="w-8 h-8 md:w-10 md:h-10" />
                     </button>
 
                 </div>
             )}
+
         </div>
     );
 }

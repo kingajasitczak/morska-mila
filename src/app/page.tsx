@@ -1,107 +1,179 @@
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import {
+    FaUmbrellaBeach,
+    FaBicycle,
+    FaHome,
+    FaMapMarkerAlt,
+    FaArrowRight
+} from "react-icons/fa";
 
 export default function Home() {
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col min-h-screen">
 
-            {/* 1. SEKCJA HERO (Wielkie zdjęcie na górze) */}
-            <div className="relative w-full h-[60vh] md:h-[80vh] flex items-center justify-center">
-                {/* Zdjęcie w tle */}
+            {/* 1. HERO SECTION - Wielkie zdjęcie na wejście */}
+            <section className="relative h-[85vh] min-h-[500px] w-full flex items-center justify-center text-center text-white px-4">
+                {/* Tło */}
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/images/DSC_0660_123.jpg" // Upewnij się, że masz to zdjęcie. Jeśli nie, zmień na DSC_0660_123.jpg
-                        alt="Morska Mila Kopań"
+                        src="/images/galeria/IMG_20180530_113925.jpg"
+                        alt="Morska Mila"
                         fill
-                        className="object-cover brightness-75" // brightness przyciemnia zdjęcie, żeby napisy były czytelne
+                        className="object-cover"
                         priority
                     />
+                    {/* Ciemna nakładka */}
+                    <div className="absolute inset-0 bg-blue-900/40 backdrop-blur-[1px]"></div>
                 </div>
 
-                {/* Napisy na środku */}
-                <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-                    <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-md tracking-wide">
-                        MORSKA MILA
+                {/* Treść Hero */}
+                <div className="relative z-10 max-w-4xl mx-auto space-y-6 animate-fade-in-up">
+                    <h2 className="text-lg md:text-xl font-bold uppercase tracking-[0.2em] text-blue-200 mb-2">
+                        Kopań koło Darłowa
+                    </h2>
+
+                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight drop-shadow-lg mb-4">
+                        Morska Mila
                     </h1>
-                    <p className="text-xl md:text-2xl mb-8 drop-shadow-md font-light">
-                        Komfortowe domki letniskowe między morzem a jeziorem
+
+                    <p className="text-lg md:text-2xl text-gray-100 max-w-2xl mx-auto font-light leading-relaxed">
+                        Komfortowe domki letniskowe między morzem a jeziorem. <br className="hidden md:block"/>
+                        Tylko 200 metrów od szerokiej, piaszczystej plaży.
                     </p>
-                    <div className="flex flex-col md:flex-row gap-4 justify-center">
+
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
                         <Link
                             href="/oferta"
-                            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 shadow-lg"
+                            // ZMIANA: bg-blue-900 (Granatowy) zamiast bg-blue-600
+                            className="px-8 py-4 bg-blue-900 hover:bg-blue-800 text-white font-bold rounded-full transition duration-300 shadow-lg text-lg"
                         >
-                            Zobacz ofertę
+                            Zobacz Domki
                         </Link>
                         <Link
                             href="/kontakt"
-                            className="bg-white hover:bg-gray-100 text-blue-900 font-bold py-3 px-8 rounded-full transition duration-300 shadow-lg"
+                            className="px-8 py-4 bg-white hover:bg-gray-100 text-blue-900 font-bold rounded-full transition duration-300 shadow-lg text-lg"
                         >
                             Skontaktuj się
                         </Link>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            {/* 2. SEKCJA "O NAS" (Tekst pod zdjęciem) */}
-            <section className="py-16 bg-white">
-                <div className="container mx-auto px-4 max-w-5xl text-center md:text-left">
-                    <div className="grid md:grid-cols-2 gap-12 items-center">
+            {/* 2. ATUTY - Ikony */}
+            <section className="py-20 bg-white container mx-auto px-4 max-w-6xl">
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                    {/* Kafel 1 */}
+                    <div className="flex flex-col items-center text-center group p-6 rounded-2xl hover:bg-blue-50 transition duration-300">
+                        <div className="bg-blue-50 text-blue-400 p-5 rounded-full mb-4 group-hover:bg-blue-900 group-hover:text-white transition duration-300">
+                            <FaUmbrellaBeach size={32} />
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-800 mb-2">Blisko Plaży</h3>
+                        <p className="text-gray-600 text-sm">
+                            Zaledwie 200m spacerem dzieli Cię od pięknego Bałtyku.
+                        </p>
+                    </div>
+
+                    {/* Kafel 2 */}
+                    <div className="flex flex-col items-center text-center group p-6 rounded-2xl hover:bg-blue-50 transition duration-300">
+                        <div className="bg-blue-50 text-blue-400 p-5 rounded-full mb-4 group-hover:bg-blue-900 group-hover:text-white transition duration-300">
+                            <FaHome size={32} />
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-800 mb-2">Komfortowe Domki</h3>
+                        <p className="text-gray-600 text-sm">
+                            Nowoczesne, piętrowe domki dla max 8 osób. Pełne wyposażenie.
+                        </p>
+                    </div>
+
+                    {/* Kafel 3 */}
+                    <div className="flex flex-col items-center text-center group p-6 rounded-2xl hover:bg-blue-50 transition duration-300">
+                        <div className="bg-blue-50 text-blue-400 p-5 rounded-full mb-4 group-hover:bg-blue-900 group-hover:text-white transition duration-300">
+                            <FaBicycle size={32} />
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-800 mb-2">Aktywny Wypoczynek</h3>
+                        <p className="text-gray-600 text-sm">
+                            Rowery dla gości i szlak R10 tuż obok ośrodka.
+                        </p>
+                    </div>
+
+                    {/* Kafel 4 */}
+                    <div className="flex flex-col items-center text-center group p-6 rounded-2xl hover:bg-blue-50 transition duration-300">
+                        <div className="bg-blue-50 text-blue-400 p-5 rounded-full mb-4 group-hover:bg-blue-900 group-hover:text-white transition duration-300">
+                            <FaMapMarkerAlt size={32} />
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-800 mb-2">Unikalna Lokalizacja</h3>
+                        <p className="text-gray-600 text-sm">
+                            Kopań – oaza spokoju między morzem a jeziorem.
+                        </p>
+                    </div>
+
+                </div>
+            </section>
+
+            {/* 3. SEKJA "O NAS" SKRÓT - Zdjęcie + Tekst */}
+            <section className="py-16 bg-gray-50">
+                <div className="container mx-auto px-4 max-w-6xl">
+                    <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+
+                        {/* Zdjęcie */}
+                        <div className="w-full lg:w-1/2 h-[350px] lg:h-[450px] relative rounded-3xl overflow-hidden shadow-xl border-4 border-white">
+                            <Image
+                                src="/images/DSC_0660_123.jpg" // Zdjęcie domków
+                                alt="Domki letniskowe Morska Mila"
+                                fill
+                                className="object-cover hover:scale-105 transition duration-700"
+                            />
+                        </div>
 
                         {/* Tekst */}
-                        <div>
-                            <h2 className="text-3xl font-bold text-blue-900 mb-6">Serdecznie Witamy</h2>
-                            <div className="space-y-4 text-gray-700 leading-relaxed text-lg">
-                                <p>
-                                    <strong>MORSKA MILA</strong> to wybudowany w połowie 2018 r. kompleks domków letniskowych,
-                                    położony w cichym, spokojnym miejscu, w miejscowości Kopań k. Darłówka.
-                                </p>
-                                <p>
-                                    Domki położone są w odległości 200m od morza, kilka minut spacerem do plaży.
-                                    Spokojna i zaciszna okolica przypadnie do gustu wszystkim, którzy cenią sobie odpoczynek
-                                    z dala od wielkomiejskiego zgiełku.
-                                </p>
+                        <div className="w-full lg:w-1/2 space-y-6">
+                            <h4 className="text-blue-400 font-bold uppercase tracking-widest text-sm">O Naszym Ośrodku</h4>
+                            <h2 className="text-3xl md:text-4xl font-bold text-blue-900 leading-tight">
+                                Poczuj morską bryzę i <br/> domową atmosferę
+                            </h2>
+                            <p className="text-gray-600 text-lg leading-relaxed text-justify">
+                                Morska Mila to kompleks 6 nowych domków (rok budowy 2018), stworzonych z myślą o rodzinach i grupach przyjaciół.
+                                Oferujemy ciszę, spokój i bliskość natury, której nie znajdziesz w zatłoczonych kurortach.
+                            </p>
+                            <ul className="space-y-3 pt-2">
+                                <li className="flex items-center gap-3 text-gray-700 font-medium">
+                                    <FaArrowRight className="text-blue-400" /> Plac zabaw dla dzieci
+                                </li>
+                                <li className="flex items-center gap-3 text-gray-700 font-medium">
+                                    <FaArrowRight className="text-blue-400" /> Altana z grillem
+                                </li>
+                                <li className="flex items-center gap-3 text-gray-700 font-medium">
+                                    <FaArrowRight className="text-blue-400" /> Bezpłatny parking i WiFi
+                                </li>
+                            </ul>
+
+                            <div className="pt-6">
+                                <Link href="/o-nas" className="text-blue-900 font-bold border-b-2 border-blue-400 hover:text-blue-600 transition pb-1">
+                                    Poznaj nas bliżej →
+                                </Link>
                             </div>
                         </div>
 
-                        {/* Drugie mniejsze zdjęcie obok tekstu */}
-                        <div className="relative h-64 md:h-80 w-full rounded-2xl overflow-hidden shadow-xl transform rotate-2 hover:rotate-0 transition duration-500">
-                            {/* Tu używamy innego zdjęcia, np. wnętrza */}
-                            <Image
-                                src="/images/DSC_0660_123.jpg"
-                                alt="Wnętrze domku"
-                                fill
-                                className="object-cover"
-                            />
-                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* 3. SEKCJA ATUTY (Ikony/Karty) */}
-            <section className="py-16 bg-gray-50">
-                <div className="container mx-auto px-4">
-                    <h2 className="text-3xl font-bold text-center text-blue-900 mb-12">Dlaczego warto nas odwiedzić?</h2>
-
-                    <div className="grid md:grid-cols-3 gap-8 text-center">
-                        {/* Karta 1 */}
-                        <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition">
-                            <div className="text-4xl mb-4">🏠</div>
-                            <h3 className="text-xl font-bold mb-2">Komfortowe Domki</h3>
-                            <p className="text-gray-600">Nowoczesne, piętrowe domki z pełnym wyposażeniem, idealne dla 6-8 osób.</p>
-                        </div>
-                        {/* Karta 2 */}
-                        <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition">
-                            <div className="text-4xl mb-4">🌊</div>
-                            <h3 className="text-xl font-bold mb-2">Blisko Morza</h3>
-                            <p className="text-gray-600">Tylko 200 metrów do szerokiej, piaszczystej plaży. Słychać szum fal!</p>
-                        </div>
-                        {/* Karta 3 */}
-                        <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition">
-                            <div className="text-4xl mb-4">b🚴</div>
-                            <h3 className="text-xl font-bold mb-2">Aktywny Wypoczynek</h3>
-                            <p className="text-gray-600">Rowery dla gości, plac zabaw dla dzieci i bliskość ścieżek rowerowych R10.</p>
-                        </div>
+            {/* 4. CTA NA DOLE */}
+            <section className="py-20 bg-blue-900 text-white text-center px-4">
+                <div className="max-w-3xl mx-auto space-y-8">
+                    <h2 className="text-3xl md:text-4xl font-bold">Planujesz wakacje?</h2>
+                    <p className="text-blue-100 text-lg">
+                        Sprawdź dostępne terminy i zarezerwuj swój wymarzony domek już teraz.
+                        Czekamy na Ciebie w Kopaniu!
+                    </p>
+                    <div className="flex justify-center gap-6 pt-4">
+                        <Link
+                            href="/cennik"
+                            className="px-8 py-3 bg-white text-blue-900 font-bold rounded-full hover:bg-blue-50 transition shadow-lg"
+                        >
+                            Sprawdź Cennik
+                        </Link>
                     </div>
                 </div>
             </section>

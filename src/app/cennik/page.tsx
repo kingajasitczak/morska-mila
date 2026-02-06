@@ -1,81 +1,178 @@
+import {
+    FaCalendarAlt,
+    FaMoneyBillWave,
+    FaClock,
+    FaUmbrellaBeach,
+    FaExclamationCircle,
+    FaUserFriends,
+    FaPlus
+} from 'react-icons/fa';
+
 export default function CennikPage() {
-    // Tutaj wpisujesz dane do tabeli.
-    // Możesz dowolnie zmieniać te wiersze.
-    const cennikData = [
-        { termin: "27.04 - 30.04", cena5: "200 PLN", cena6: "240 PLN", doplata: "30 PLN" },
-        { termin: "Majówka (30.04 - 05.05)", cena5: "350 PLN", cena6: "390 PLN", doplata: "30 PLN" },
-        { termin: "05.05 - 15.06", cena5: "250 PLN", cena6: "290 PLN", doplata: "30 PLN" },
-        { termin: "15.06 - 22.06", cena5: "300 PLN", cena6: "350 PLN", doplata: "30 PLN" },
-        { termin: "22.06 - 29.06", cena5: "350 PLN", cena6: "400 PLN", doplata: "30 PLN" },
-        { termin: "29.06 - 06.07", cena5: "400 PLN", cena6: "450 PLN", doplata: "30 PLN" },
-        { termin: "06.07 - 17.08 (Wysoki sezon)", cena5: "450 PLN", cena6: "500 PLN", doplata: "40 PLN" },
-        { termin: "17.08 - 24.08", cena5: "350 PLN", cena6: "400 PLN", doplata: "30 PLN" },
-        { termin: "24.08 - 31.08", cena5: "300 PLN", cena6: "350 PLN", doplata: "30 PLN" },
-        { termin: "Wrzesień", cena5: "200 PLN", cena6: "240 PLN", doplata: "30 PLN" },
+    // DANE DO TABELI - Pamiętaj, aby uzupełnić tutaj swoje ceny!
+    const cennik = [
+        {
+            termin: "Majówka (01.05 - 05.05)",
+            cena5: "000 zł",
+            cena6: "000 zł",
+            dostawka: "+00 zł"
+        },
+        {
+            termin: "Boże Ciało (30.05 - 02.06)",
+            cena5: "000 zł",
+            cena6: "000 zł",
+            dostawka: "+00 zł"
+        },
+        {
+            termin: "Czerwiec (do 23.06)",
+            cena5: "000 zł",
+            cena6: "000 zł",
+            dostawka: "+00 zł"
+        },
+        {
+            termin: "Sezon Wysoki (24.06 - 20.08)",
+            cena5: "000 zł",
+            cena6: "000 zł",
+            dostawka: "+00 zł"
+        },
+        {
+            termin: "Końcówka Sierpnia (od 21.08)",
+            cena5: "000 zł",
+            cena6: "000 zł",
+            dostawka: "+00 zł"
+        },
+        {
+            termin: "Wrzesień",
+            cena5: "000 zł",
+            cena6: "000 zł",
+            dostawka: "+00 zł"
+        },
     ];
 
     return (
-        <div className="container mx-auto px-4 py-12 max-w-5xl">
-            <h1 className="text-3xl md:text-4xl font-bold text-blue-900 mb-6 border-b-2 border-blue-100 pb-4">
+        <div className="container mx-auto px-4 py-12 max-w-6xl">
+
+            {/* NAGŁÓWEK */}
+            <h1 className="text-3xl md:text-4xl font-bold text-blue-900 mb-8 border-b-2 border-blue-100 pb-4">
                 Cennik
             </h1>
 
-            <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
-                Ceny w tabeli podane są w PLN i dotyczą wynajmu domku na jedną dobę.
-                <br />
-                Domki są przystosowane dla maksymalnie 8 osób.
-            </p>
+            <div className="grid lg:grid-cols-3 gap-12 items-start">
 
-            {/* Kontener tabeli z przewijaniem na telefonach */}
-            <div className="overflow-x-auto shadow-lg rounded-lg border border-gray-200">
-                <table className="w-full text-sm text-left text-gray-700">
-                    <thead className="text-xs text-white uppercase bg-blue-900">
-                    <tr>
-                        <th scope="col" className="px-6 py-4 border-r border-blue-800">
-                            Termin
-                        </th>
-                        <th scope="col" className="px-6 py-4 text-center border-r border-blue-800">
-                            Cena do 5 osób
-                        </th>
-                        <th scope="col" className="px-6 py-4 text-center border-r border-blue-800">
-                            Cena za 6 osób
-                        </th>
-                        <th scope="col" className="px-6 py-4 text-center">
-                            Dopłata za kolejną osobę
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {cennikData.map((wiersz, index) => (
-                        <tr
-                            key={index}
-                            className={`border-b hover:bg-blue-50 transition ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}
-                        >
-                            <td className="px-6 py-4 font-medium text-gray-900 border-r">
-                                {wiersz.termin}
-                            </td>
-                            <td className="px-6 py-4 text-center border-r text-blue-900 font-bold">
-                                {wiersz.cena5}
-                            </td>
-                            <td className="px-6 py-4 text-center border-r text-blue-900 font-bold">
-                                {wiersz.cena6}
-                            </td>
-                            <td className="px-6 py-4 text-center text-gray-500">
-                                {wiersz.doplata}
-                            </td>
-                        </tr>
-                    ))}
-                    </tbody>
-                </table>
-            </div>
+                {/* LEWA KOLUMNA: Tabela cen (Szersza) */}
+                <div className="lg:col-span-2">
+                    <p className="text-gray-600 mb-6 text-lg">
+                        Poniższe ceny dotyczą wynajmu domku za jedną dobę.
+                        W sezonie wysokim preferujemy pobyty tygodniowe (od soboty do soboty).
+                    </p>
 
-            <div className="mt-8 bg-yellow-50 border-l-4 border-yellow-400 p-4 text-sm text-yellow-800">
-                <p className="font-bold mb-1">Ważne informacje:</p>
-                <ul className="list-disc pl-5 space-y-1">
-                    <li>W okresie wakacyjnym (Lipiec - Sierpień) domki wynajmujemy jedynie na pobyty 7-dniowe (od soboty do soboty).</li>
-                    <li>Pobyt rozpoczyna się o godz. 15.00 w dniu przyjazdu i kończy o godz. 10.00 w dniu wyjazdu.</li>
-                    <li>Do ceny należy doliczyć opłatę klimatyczną wg stawek gminy Darłowo.</li>
-                </ul>
+                    {/* Kontener z przewijaniem (dla urządzeń mobilnych) */}
+                    <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
+                        <table className="w-full text-left border-collapse min-w-[600px]">
+                            <thead>
+                            <tr className="bg-blue-900 text-white text-sm uppercase tracking-wider">
+                                <th className="p-4 font-bold w-1/3">Termin</th>
+                                <th className="p-4 font-bold text-center">
+                                    <div className="flex flex-col items-center gap-1">
+                                        <FaUserFriends size={16} /> 5 Osób
+                                    </div>
+                                </th>
+                                <th className="p-4 font-bold text-center">
+                                    <div className="flex flex-col items-center gap-1">
+                                        <FaUserFriends size={16} /> 6 Osób
+                                    </div>
+                                </th>
+                                <th className="p-4 font-bold text-center text-blue-200">
+                                    <div className="flex flex-col items-center gap-1">
+                                        <FaPlus size={16} /> Kolejna os.
+                                    </div>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody className="text-gray-700 text-sm md:text-base">
+                            {cennik.map((item, index) => (
+                                <tr
+                                    key={index}
+                                    className={`border-b border-gray-100 hover:bg-blue-50 transition ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}
+                                >
+                                    <td className="p-4 flex items-center gap-3 font-bold text-blue-900">
+                                        <FaCalendarAlt className="text-blue-400 shrink-0" />
+                                        {item.termin}
+                                    </td>
+                                    <td className="p-4 text-center font-medium">
+                                        {item.cena5}
+                                    </td>
+                                    <td className="p-4 text-center font-bold text-blue-900">
+                                        {item.cena6}
+                                    </td>
+                                    <td className="p-4 text-center text-gray-500">
+                                        {item.dostawka}
+                                    </td>
+                                </tr>
+                            ))}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div className="mt-6 flex items-start gap-3 text-sm text-gray-500 bg-gray-50 p-4 rounded-xl border border-gray-100">
+                        <FaExclamationCircle className="mt-1 text-blue-400 shrink-0 text-lg" />
+                        <p>
+                            Maksymalna liczba osób w domku to <strong>8</strong>.
+                            Dzieci do lat 3 nie są wliczane do ceny, jeśli śpią z rodzicami (bez dodatkowej pościeli).
+                            W cenę wliczone są media (prąd, woda) oraz jedno miejsce parkingowe.
+                        </p>
+                    </div>
+                </div>
+
+
+                {/* PRAWA KOLUMNA: Opłaty i Zasady */}
+                <div className="space-y-8">
+
+                    {/* Opłaty dodatkowe (Tylko Klimatyczna) */}
+                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                        <h3 className="text-xl font-bold text-blue-900 mb-6 flex items-center gap-2">
+                            <FaMoneyBillWave className="text-blue-400" /> Opłaty dodatkowe
+                        </h3>
+
+                        <div className="space-y-4">
+                            <div className="flex items-start gap-3">
+                                <div className="bg-blue-50 p-2 rounded-lg text-blue-400">
+                                    <FaUmbrellaBeach size={16} />
+                                </div>
+                                <div>
+                                    <p className="font-bold text-gray-800">Opłata klimatyczna</p>
+                                    <p className="text-sm text-gray-600">Płatna na miejscu gotówką wg aktualnych stawek Urzędu Gminy Darłowo.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Ważne informacje */}
+                    <div className="bg-blue-900 text-white p-6 rounded-2xl shadow-md">
+                        <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                            <FaClock className="text-blue-300" /> Rezerwacja
+                        </h3>
+                        <ul className="space-y-3 text-sm text-blue-100">
+                            <li className="flex items-start gap-2">
+                                <span className="text-blue-400 font-bold">•</span>
+                                <span>Doba zaczyna się o <strong>15:00</strong> w dniu przyjazdu.</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-blue-400 font-bold">•</span>
+                                <span>Doba kończy się o <strong>10:00</strong> w dniu wyjazdu.</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-blue-400 font-bold">•</span>
+                                <span>Warunkiem rezerwacji jest wpłata zadatku (30%).</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-blue-400 font-bold">•</span>
+                                <span>Pozostała kwota płatna w dniu przyjazdu (gotówką).</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
             </div>
         </div>
     );
