@@ -7,32 +7,80 @@ import { FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 // KATEGORIE
 const categories = [
     { id: "all", name: "Wszystko" },
-    { id: "wnetrze", name: "Wnętrze" },
-    { id: "zewnatrz", name: "Zewnątrz" },
+    { id: "wnetrze", name: "W środku" },
+    { id: "zewnatrz", name: "Na zewnątrz" },
     { id: "okolica", name: "Okolica" },
 ];
 
 // ZDJĘCIA
 const photos = [
     // WNĘTRZE
-    { src: "/images/domki/1.jpg", category: "wnetrze", alt: "Salon z aneksem" },
+    { src: "/images/domki/nowe1.jpg", category: "wnetrze", alt: "Salon z aneksem" },
+    { src: "/images/domki/nowe2.jpg", category: "wnetrze", alt: "Salon z aneksem" },
     { src: "/images/domki/2.jpg", category: "wnetrze", alt: "Salon z aneksem" },
     { src: "/images/domki/3.jpg", category: "wnetrze", alt: "Salon z aneksem" },
     { src: "/images/domki/4.jpg", category: "wnetrze", alt: "Salon z aneksem" },
-    { src: "/images/domki/5.jpg", category: "wnetrze", alt: "Salon z aneksem" },
     { src: "/images/domki/6.jpg", category: "wnetrze", alt: "Salon z aneksem" },
     { src: "/images/domki/7_.jpg", category: "wnetrze", alt: "Salon z aneksem" },
     { src: "/images/domki/8.jpg", category: "wnetrze", alt: "Salon z aneksem" },
-    { src: "/images/domki/9.jpg", category: "wnetrze", alt: "Salon z aneksem" },
+    { src: "/images/domki/9a_.jpg", category: "wnetrze", alt: "Salon z aneksem" },
+    { src: "/images/domki/9b_.jpg", category: "wnetrze", alt: "Salon z aneksem" },
+    { src: "/images/domki/9c_.jpg", category: "wnetrze", alt: "Salon z aneksem" },
+    { src: "/images/domki/9d_.jpg", category: "wnetrze", alt: "Salon z aneksem" },
+    { src: "/images/domki/9e.jpg", category: "wnetrze", alt: "Sypialnie" },
+    { src: "/images/domki/9f.jpg", category: "wnetrze", alt: "Sypialnie" },
+    { src: "/images/domki/9g.jpg", category: "wnetrze", alt: "Sypialnie" },
+    { src: "/images/domki/9h.jpg", category: "wnetrze", alt: "Sypialnie" },
+    { src: "/images/domki/9i.jpg", category: "wnetrze", alt: "Sypialnie" },
+    { src: "/images/domki/9j.jpg", category: "wnetrze", alt: "Sypialnie" },
+    { src: "/images/domki/9m.jpg", category: "wnetrze", alt: "Sypialnie" },
+    { src: "/images/domki/9n.jpg", category: "wnetrze", alt: "Łazienka" },
+    { src: "/images/domki/9o.jpg", category: "wnetrze", alt: "Łazienka" },
+    { src: "/images/domki/9p.jpg", category: "wnetrze", alt: "Łazienka" },
+
 
 
     // ZEWNĄTRZ
-    { src: "/images/DSC_0660_123.jpg", category: "zewnatrz", alt: "Domki z zewnątrz" },
-    { src: "/images/DSC_0663.jpg", category: "zewnatrz", alt: "Taras" },
-    { src: "/images/Panorama1.jpg", category: "zewnatrz", alt: "Panorama ośrodka" },
+    { src: "/images/domki_z/1__.jpg", category: "zewnatrz", alt: "Domki z zewnątrz" },
+    { src: "/images/domki_z/2a.jpeg", category: "zewnatrz", alt: "Podwórko" },
+    { src: "/images/domki_z/3.jpg", category: "zewnatrz", alt: "Domki z zewnątrz" },
+    { src: "/images/domki_z/9p.jpeg", category: "zewnatrz", alt: "Altana" },
+    { src: "/images/domki_z/4.jpg", category: "zewnatrz", alt: "Domki z zewnątrz" },
+    { src: "/images/domki_z/5.jpg", category: "zewnatrz", alt: "Domki z zewnątrz" },
+    { src: "/images/domki_z/6.jpg", category: "zewnatrz", alt: "Domki z zewnątrz" },
+    { src: "/images/domki_z/7.jpg", category: "zewnatrz", alt: "Rowery" },
+    { src: "/images/domki_z/8.jpg", category: "zewnatrz", alt: "Rowery" },
+    { src: "/images/domki_z/9.jpg", category: "zewnatrz", alt: "Rowery" },
+    { src: "/images/domki_z/9a.jpg", category: "zewnatrz", alt: "Rowery" },
+    { src: "/images/domki_z/9b.jpeg", category: "zewnatrz", alt: "Plac zabaw" },
+    { src: "/images/domki_z/9e.jpg", category: "zewnatrz", alt: "Rowery" },
+    { src: "/images/domki_z/9f.jpeg", category: "zewnatrz", alt: "Altana" },
+    { src: "/images/domki_z/9g.jpg", category: "zewnatrz", alt: "Altana" },
+    { src: "/images/domki_z/9h.jpeg", category: "zewnatrz", alt: "Plac zabaw" },
+    { src: "/images/domki_z/9i.jpeg", category: "zewnatrz", alt: "Plac zabaw" },
+    { src: "/images/domki_z/9j.jpeg", category: "zewnatrz", alt: "Plac zabaw" },
+
+
 
     // OKOLICA
-    { src: "/images/Kopan.jpg", category: "okolica", alt: "Okolica i jezioro" },
+    { src: "/images/plaza/IMG_20190711_184510_BURST001_COVER.jpg", category: "okolica", alt: "Plaża" },
+    { src: "/images/plaza/IMG_20190711_190902.jpg", category: "okolica", alt: "Plaża" },
+    { src: "/images/plaza/received_212967716529541.jpeg", category: "okolica", alt: "Plaża" },
+    { src: "/images/plaza/received_215389286577217.jpeg", category: "okolica", alt: "Plaża" },
+    { src: "/images/plaza/received_415232669258059.jpeg", category: "okolica", alt: "Plaża" },
+    { src: "/images/plaza/received_631633164369864.jpeg", category: "okolica", alt: "Plaża" },
+    { src: "/images/plaza/received_705888203586468.jpeg", category: "okolica", alt: "Plaża" },
+    { src: "/images/plaza/IMG_4922_.jpg", category: "okolica", alt: "Plaża" },
+    { src: "/images/plaza/IMG_4923_.jpg", category: "okolica", alt: "Plaża" },
+    { src: "/images/plaza/IMG_4939_.jpg", category: "okolica", alt: "Plaża" },
+    { src: "/images/plaza/IMG_4942_.jpg", category: "okolica", alt: "Plaża" },
+    { src: "/images/plaza/IMG_4943_.jpg", category: "okolica", alt: "Plaża" },
+    { src: "/images/plaza/IMG_4944_.jpg", category: "okolica", alt: "Plaża" },
+    { src: "/images/plaza/IMG_4945_.jpg", category: "okolica", alt: "Plaża" },
+    { src: "/images/plaza/IMG_5356.jpg", category: "okolica", alt: "Plaża" },
+    { src: "/images/plaza/IMG_5618_.jpg", category: "okolica", alt: "Plaża" },
+    { src: "/images/plaza/IMG_5621_.jpg", category: "okolica", alt: "Plaża" },
+    { src: "/images/Kopan.jpg", category: "okolica", alt: "Mapa" },
 ];
 
 export default function GaleriaPage() {

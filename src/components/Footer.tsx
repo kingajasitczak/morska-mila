@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { FaEnvelope, FaFacebook } from 'react-icons/fa'; // Importujemy profesjonalne ikony
+import { FaEnvelope, FaFacebook, FaCode } from 'react-icons/fa'; // Dodałem ikonę kodu dla smaczku
 
 export default function Footer() {
     return (
@@ -23,7 +23,7 @@ export default function Footer() {
 
                         <p className="text-sm leading-relaxed mb-4 max-w-xs text-gray-500">
                             Komfortowe domki letniskowe w Kopaniu.
-                            Idealne miejsce na rodzinny wypoczynek między morzem a jeziorem.
+                            Idealne miejsce na rodzinny wypoczynek nad Bałtykiem.
                         </p>
                     </div>
 
@@ -77,8 +77,22 @@ export default function Footer() {
                 </div>
 
                 {/* DOLNY PASEK */}
-                <div className="mt-12 pt-6 border-t border-gray-300 text-center text-xs text-gray-500 flex flex-col md:flex-row justify-between items-center gap-2">
+                <div className="mt-12 pt-6 border-t border-gray-300 text-center text-xs text-gray-500 flex flex-col md:flex-row justify-between items-center gap-4">
                     <p>© {new Date().getFullYear()} Morska Mila. Wszelkie prawa zastrzeżone.</p>
+
+                    {/* TWÓJ PODPIS */}
+                    <div className="flex items-center gap-1">
+                        <FaCode className="text-blue-400" />
+                        <span>Projekt i wykonanie:</span>
+                        <a
+                            href="https://linktr.ee/kingajasitczak"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-bold text-gray-600 hover:text-blue-900 transition-colors duration-300"
+                        >
+                            Kinga Jasitczak
+                        </a>
+                    </div>
                 </div>
             </div>
         </footer>

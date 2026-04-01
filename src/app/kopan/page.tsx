@@ -13,8 +13,8 @@ export default function KopanPage() {
             {/* ZDJĘCIE GŁÓWNE */}
             <div className="relative w-full h-[300px] md:h-[450px] rounded-2xl overflow-hidden shadow-xl mb-12">
                 <Image
-                    src="/images/plaza/IMG_20190711_184510_BURST001_COVER.jpg" // Upewnij się, że masz to zdjęcie
-                    alt="Panorama miejscowości Kopań"
+                    src="/images/plaza/IMG_5356.jpg"
+                    alt="Plaża"
                     fill
                     className="object-cover"
                 />
@@ -54,7 +54,7 @@ export default function KopanPage() {
                         <div>
                             <h3 className="text-lg font-bold text-blue-900 mb-2">Morze i Jezioro</h3>
                             <p className="text-gray-600 text-sm leading-relaxed">
-                                Unikalne położenie na wąskim pasie lądu. Jednego dnia plażujesz nad Bałtykiem, a wieczorem spacerujesz nad jeziorem.
+                                Unikalne położenie. Jednego dnia plażujesz nad Bałtykiem, a drugiego łowisz ryby w jeziorze.
                             </p>
                         </div>
                     </div>

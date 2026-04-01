@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -9,28 +12,61 @@ import {
 } from "react-icons/fa";
 
 export default function Home() {
+    // Tablica ze zdjęciami
+    const heroImages = [
+        "/images/bannerstart/1.jpg",
+        "/images/bannerstart/2.jpg",
+        "/images/bannerstart/3.jpg",
+        "/images/bannerstart/4.jpg",
+        "/images/bannerstart/5.jpg"
+    ];
+
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    // Automatyczna zmiana zdjęć co 5 sekund
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentIndex((prev) => (prev + 1) % heroImages.length);
+        }, 5000);
+        return () => clearInterval(timer);
+    }, [heroImages.length]);
+
     return (
         <div className="flex flex-col min-h-screen">
 
-            {/* 1. HERO SECTION - Wielkie zdjęcie na wejście */}
-            <section className="relative h-[85vh] min-h-[500px] w-full flex items-center justify-center text-center text-white px-4">
-                {/* Tło */}
-                <div className="absolute inset-0 z-0">
-                    <Image
-                        src="/images/galeria/IMG_20180530_113925.jpg"
-                        alt="Morska Mila"
-                        fill
-                        className="object-cover"
-                        priority
-                    />
-                    {/* Ciemna nakładka */}
-                    <div className="absolute inset-0 bg-blue-900/40 backdrop-blur-[1px]"></div>
+            {/* 1. HERO SECTION - Super płynne przenikanie */}
+            <section className="relative h-[85vh] min-h-[500px] w-full flex items-center justify-center text-center text-white px-4 overflow-hidden">
+
+                {/* TŁO (z-0) - Kontener trzymający zdjęcia i przyciemnienie */}
+                <div className="absolute inset-0 z-0 bg-blue-950">
+                    {/* Zdjęcia */}
+                    {heroImages.map((src, index) => (
+                        <div
+                            key={index}
+                            className={`absolute inset-0 transition-all duration-[2000ms] ease-in-out transform ${
+                                index === currentIndex
+                                    ? "opacity-100 scale-105"
+                                    : "opacity-0 scale-100"
+                            }`}
+                        >
+                            <Image
+                                src={src}
+                                alt={`Morska Mila tło ${index + 1}`}
+                                fill
+                                className="object-cover"
+                                priority
+                            />
+                        </div>
+                    ))}
+
+                    {/* Ciemna nakładka - przykrywa tylko zdjęcia (z-10 wymusza bycie nad powiększającymi się fotkami) */}
+                    <div className="absolute inset-0 bg-blue-900/40 backdrop-blur-[1px] z-10 pointer-events-none"></div>
                 </div>
 
-                {/* Treść Hero */}
-                <div className="relative z-10 max-w-4xl mx-auto space-y-6 animate-fade-in-up">
+                {/* TREŚĆ HERO (z-20) - Najwyższa warstwa, 100% wyraźna i nieprzyciemniona */}
+                <div className="relative z-20 max-w-4xl mx-auto space-y-6 animate-fade-in-up">
                     <h2 className="text-lg md:text-xl font-bold uppercase tracking-[0.2em] text-blue-200 mb-2">
-                        Kopań koło Darłowa
+                        Kopań
                     </h2>
 
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight drop-shadow-lg mb-4">
@@ -38,23 +74,22 @@ export default function Home() {
                     </h1>
 
                     <p className="text-lg md:text-2xl text-gray-100 max-w-2xl mx-auto font-light leading-relaxed">
-                        Komfortowe domki letniskowe między morzem a jeziorem. <br className="hidden md:block"/>
+                        Domki letniskowe pomiędzy morzem a jeziorem. <br className="hidden md:block"/>
                         Tylko 200 metrów od szerokiej, piaszczystej plaży.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
                         <Link
                             href="/oferta"
-                            // ZMIANA: bg-blue-900 (Granatowy) zamiast bg-blue-600
                             className="px-8 py-4 bg-blue-900 hover:bg-blue-800 text-white font-bold rounded-full transition duration-300 shadow-lg text-lg"
                         >
-                            Zobacz Domki
+                            Domki
                         </Link>
                         <Link
                             href="/kontakt"
                             className="px-8 py-4 bg-white hover:bg-gray-100 text-blue-900 font-bold rounded-full transition duration-300 shadow-lg text-lg"
                         >
-                            Skontaktuj się
+                            Kontakt
                         </Link>
                     </div>
                 </div>
@@ -133,7 +168,7 @@ export default function Home() {
                                 Poczuj morską bryzę i <br/> domową atmosferę
                             </h2>
                             <p className="text-gray-600 text-lg leading-relaxed text-justify">
-                                Morska Mila to kompleks 6 nowych domków (rok budowy 2018), stworzonych z myślą o rodzinach i grupach przyjaciół.
+                                Morska Mila to kompleks 6 domków, stworzonych z myślą o rodzinach i grupach przyjaciół.
                                 Oferujemy ciszę, spokój i bliskość natury, której nie znajdziesz w zatłoczonych kurortach.
                             </p>
                             <ul className="space-y-3 pt-2">
@@ -164,7 +199,7 @@ export default function Home() {
                 <div className="max-w-3xl mx-auto space-y-8">
                     <h2 className="text-3xl md:text-4xl font-bold">Planujesz wakacje?</h2>
                     <p className="text-blue-100 text-lg">
-                        Sprawdź dostępne terminy i zarezerwuj swój wymarzony domek już teraz.
+                        Zarezerwuj swój wymarzony domek już teraz.
                         Czekamy na Ciebie w Kopaniu!
                     </p>
                     <div className="flex justify-center gap-6 pt-4">

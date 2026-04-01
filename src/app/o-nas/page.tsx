@@ -25,20 +25,17 @@ export default function ONasPage() {
                         Nasz ośrodek znajduje się w malowniczej miejscowości <strong>Kopań</strong>, tuż obok Darłowa.
                     </p>
                     <p>
-                        To, co nas wyróżnia, to unikalna lokalizacja. Jesteśmy położeni na wąskim pasie lądu między
-                        <strong> Jeziorem Kopań</strong> a <strong>Morzem Bałtyckim</strong>. Dzięki temu nasi Goście mogą cieszyć się
-                        zarówno urokami szerokiej, niezatłoczonej plaży (zaledwie 200 metrów od domków), jak i spokojem jeziora.
+                        To, co nas wyróżnia, to idealny balans między ciszą a bliskością morskich atrakcji. Jesteśmy położeni w spokojnej okolicy, która gwarantuje prawdziwy odpoczynek od zgiełku miasta. Jednocześnie nasi Goście mają zaledwie <strong>200 metrów</strong> do szerokiej, piaszczystej i niezatłoczonej plaży, do której prowadzi prosta droga. To idealne miejsce dla osób szukających prywatności, a jednocześnie chcących mieć atrakcje Darłowa i Darłówka w zasięgu niedługiego spaceru lub przejażdżki rowerowej.
                     </p>
                     <p>
-                        Ośrodek został wybudowany w <strong>2018 roku</strong>. Oddajemy do Państwa dyspozycji 6 nowoczesnych,
+                        Ośrodek istnieje od <strong>2018 roku</strong>. Oddajemy do Państwa dyspozycji 6 nowoczesnych,
                         drewnianych domków, które zaprojektowaliśmy tak, aby zapewnić komfort, prywatność i domową atmosferę.
                     </p>
                 </div>
 
-                {/* Zdjęcie (możesz tu dać inne, np. panoramę) */}
                 <div className="relative h-[400px] w-full rounded-3xl overflow-hidden shadow-xl border-4 border-white bg-gray-100">
                     <Image
-                        src="/images/domki_z/1__.jpg"
+                        src="/images/plaza/IMG_20190711_184510_BURST001_COVER.jpg"
                         alt="Domki z zewnątrz"
                         fill
                         className="object-cover hover:scale-105 transition duration-700"
@@ -84,7 +81,7 @@ export default function ONasPage() {
                         </div>
                         <h3 className="font-bold text-lg text-gray-800 mb-2">Komfort</h3>
                         <p className="text-sm text-gray-600">
-                            Nowoczesne domki (2018) są w pełni wyposażone, ocieplone i wygłuszone.
+                            Nowoczesne domki oferują pełne wyposażenie, przytulne wnętrza oraz zadaszony taras.
                         </p>
                     </div>
 

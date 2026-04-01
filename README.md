@@ -1,36 +1,21 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Morska Mila – Ośrodek Wypoczynkowy w Kopaniu
 
-## Getting Started
+**Status projektu:** Produkcyjny (Live)  
+**Link do strony:** [www.morska-mila.pl](https://www.morska-mila.pl)
 
-First, run the development server:
+## 📝 O projekcie
+Kompleksowa strona internetowa typu wizytówka stworzona dla ośrodka domków letniskowych "Morska Mila" w miejscowości Kopań. Projekt skupia się na wysokiej estetyce, szybkości działania oraz dostarczeniu intuicyjnego interfejsu dla potencjalnych gości.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Kluczowe funkcjonalności:
+- **Dynamiczny Hero Section:** Płynny slider z efektem Ken Burns (subtelne powiększanie zdjęć).
+- **Cennik:** Przejrzysta prezentacja stawek sezonowych z logiką dopłat za dodatkowe osoby.
+- **Responsive Web Design (RWD):** Pełna optymalizacja pod urządzenia mobilne i tablety.
+- **Optymalizacja wydajności:** Wykorzystanie komponentu `next/image` dla automatycznej optymalizacji formatów i rozmiarów zdjęć (WebP).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Stack technologiczny
+- **Framework:** [Next.js 14+](https://nextjs.org/) (App Router)
+- **Stylizowanie:** [Tailwind CSS](https://tailwindcss.com/)
+- **Ikony:** [React Icons](https://react-icons.github.io/react-icons/)
+- **Język:** JavaScript / React
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Strona stworzona przez: Kinga Jasitczak

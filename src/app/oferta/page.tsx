@@ -24,12 +24,11 @@ export default function OfertaPage() {
             <div className="flex flex-col md:flex-row gap-12 mb-16 items-center">
                 <div className="md:w-1/2 space-y-6 text-lg text-gray-700 leading-relaxed">
                     <p>
-                        Oferujemy Państwu <strong>6 komfortowych, drewnianych domków letniskowych</strong>.
+                        Oferujemy Państwu <strong>6 nowoczesnych, drewnianych domków letniskowych</strong>.
                         Każdy domek jest piętrowy i przeznaczony dla maksymalnie <strong>8 osób</strong>.
                     </p>
                     <p>
-                        Domki zostały wybudowane w 2018 roku. Są ocieplone, wygłuszone i urządzone w nowoczesnym,
-                        ale przytulnym stylu, aby zapewnić Państwu najwyższy standard wypoczynku.
+                        Przestrzeń o powierzchni ok. 50 m² została zaprojektowana tak, aby zapewnić swobodę i wygodę zarówno rodzinom z dziećmi, jak i grupom przyjaciół.
                     </p>
 
                     {/* SZYBKIE ATUTY */}
@@ -47,7 +46,7 @@ export default function OfertaPage() {
                 {/* ZDJĘCIE */}
                 <div className="md:w-1/2 relative h-[300px] w-full rounded-2xl overflow-hidden shadow-lg">
                     <Image
-                        src="/images/domki_z/6.jpg"
+                        src="/images/domki_z/1__.jpg"
                         alt="Domki Morska Mila"
                         fill
                         className="object-cover"
@@ -205,10 +204,10 @@ export default function OfertaPage() {
                         <span className="text-blue-400">●</span> Nie zapewniamy ręczników (prosimy o zabranie własnych).
                     </li>
                     <li className="flex items-center gap-2">
-                        <span className="text-blue-400">●</span> Obowiązuje zakaz smażenia ryb wewnątrz domków.
+                        <span className="text-blue-400">●</span> Cena pobytu nie uwzględnia opłaty klimatycznej (wg stawek Gminy Darłowo).
                     </li>
                     <li className="flex items-center gap-2">
-                        <span className="text-blue-400">●</span> Możliwość dostawienia łóżeczka dla dziecka (po uzgodnieniu).
+                        <span className="text-blue-400">●</span> Możliwość dostawienia łóżeczka turystycznego (po uzgodnieniu).
                     </li>
                 </ul>
             </div>
