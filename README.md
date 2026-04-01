@@ -16,6 +16,6 @@ Kompleksowa strona internetowa typu wizytówka stworzona dla ośrodka domków le
 - **Framework:** [Next.js 14+](https://nextjs.org/) (App Router)
 - **Stylizowanie:** [Tailwind CSS](https://tailwindcss.com/)
 - **Ikony:** [React Icons](https://react-icons.github.io/react-icons/)
-- **Język:** JavaScript / React
+- **Język:** [TypeScript](https://www.typescriptlang.org/)  
 
 Strona stworzona przez: Kinga Jasitczak
