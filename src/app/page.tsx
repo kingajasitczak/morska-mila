@@ -14,8 +14,8 @@ import {
 export default function Home() {
     // Tablica ze zdjęciami
     const heroImages = [
-        "/images/bannerstart/1.jpg",
         "/images/bannerstart/2.jpg",
+        "/images/bannerstart/1.jpg",
         "/images/bannerstart/3.jpg",
         "/images/bannerstart/4.jpg",
         "/images/bannerstart/5.jpg"
@@ -34,42 +34,51 @@ export default function Home() {
     return (
         <div className="flex flex-col min-h-screen">
 
-            {/* 1. HERO SECTION - Super płynne przenikanie */}
+            {/* 1. HERO SECTION */}
             <section className="relative h-[85vh] min-h-[500px] w-full flex items-center justify-center text-center text-white px-4 overflow-hidden">
 
-                {/* TŁO (z-0) - Kontener trzymający zdjęcia i przyciemnienie */}
-                <div className="absolute inset-0 z-0 bg-blue-950">
+                {/* TŁO (z-0) */}
+                <div className="absolute inset-0 z-0 bg-black">
                     {/* Zdjęcia */}
                     {heroImages.map((src, index) => (
                         <div
                             key={index}
-                            className={`absolute inset-0 transition-all duration-[2000ms] ease-in-out transform ${
-                                index === currentIndex
-                                    ? "opacity-100 scale-105"
-                                    : "opacity-0 scale-100"
-                            }`}
+                            className="absolute inset-0 pointer-events-none"
+                            // KULOODPORNA ANIMACJA: Przeniesiona do stylów inline, żeby Tailwind jej nie zgubił
+                            style={{
+                                transition: "all 2s ease-in-out",
+                                opacity: index === currentIndex ? 1 : 0,
+                                transform: index === currentIndex ? "scale(1.05)" : "scale(1)"
+                            }}
                         >
                             <Image
                                 src={src}
                                 alt={`Morska Mila tło ${index + 1}`}
                                 fill
                                 className="object-cover"
-                                priority
+                                priority={index === 0}
                             />
                         </div>
                     ))}
 
-                    {/* Ciemna nakładka - przykrywa tylko zdjęcia (z-10 wymusza bycie nad powiększającymi się fotkami) */}
-                    <div className="absolute inset-0 bg-blue-900/40 backdrop-blur-[1px] z-10 pointer-events-none"></div>
+                    {/* KULOODPORNE PRZYCIEMNIENIE: Neutralne czarne tło */}
+                    <div
+                        className="absolute inset-0 z-10 pointer-events-none"
+                        style={{ backgroundColor: "rgba(0, 0, 0, 0.15)" }}
+                    ></div>
                 </div>
 
-                {/* TREŚĆ HERO (z-20) - Najwyższa warstwa, 100% wyraźna i nieprzyciemniona */}
-                <div className="relative z-20 max-w-4xl mx-auto space-y-6 animate-fade-in-up">
+                {/* TREŚĆ HERO (z-20) */}
+                <div
+                    className="relative z-20 max-w-4xl mx-auto space-y-6 animate-fade-in-up"
+                    // KULOODPORNY CIEŃ: Odrywa biały tekst od najjaśniejszych elementów na zdjęciu
+                    style={{ textShadow: "0 4px 15px rgba(0,0,0,0.9)" }}
+                >
                     <h2 className="text-lg md:text-xl font-bold uppercase tracking-[0.2em] text-blue-200 mb-2">
                         Kopań
                     </h2>
 
-                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight drop-shadow-lg mb-4">
+                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-4">
                         Morska Mila
                     </h1>
 
@@ -78,7 +87,8 @@ export default function Home() {
                         Tylko 200 metrów od szerokiej, piaszczystej plaży.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+                    {/* Wyłączenie cienia dla przycisków, żeby były idealnie ostre */}
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8" style={{ textShadow: "none" }}>
                         <Link
                             href="/oferta"
                             className="px-8 py-4 bg-blue-900 hover:bg-blue-800 text-white font-bold rounded-full transition duration-300 shadow-lg text-lg"
@@ -154,7 +164,7 @@ export default function Home() {
                         {/* Zdjęcie */}
                         <div className="w-full lg:w-1/2 h-[350px] lg:h-[450px] relative rounded-3xl overflow-hidden shadow-xl border-4 border-white">
                             <Image
-                                src="/images/DSC_0660_123.jpg" // Zdjęcie domków
+                                src="/images/DSC_0660_123.jpg"
                                 alt="Domki letniskowe Morska Mila"
                                 fill
                                 className="object-cover hover:scale-105 transition duration-700"
